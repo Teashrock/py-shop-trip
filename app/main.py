@@ -59,7 +59,7 @@ def shop_trip() -> None:
             print(f"{customer.name} rides to {chosen_shop}\n")
             customer.location = shop_instance.location  # pyright: ignore
             curr_date = datetime.datetime.now().strftime(
-                "%d/%m/20%y %H:%M:%S"
+                "%d/%m/%Y %H:%M:%S"
             )
             print(f"Date: {curr_date}")
             print(f"Thanks, {customer.name}, for your purchase!")
@@ -74,4 +74,5 @@ def shop_trip() -> None:
             print(f"Total cost is {product_price} dollars")
             print(f"See you again!\n\n{customer.name} rides home")
             customer.location = original_home_location
-            print(f"{customer.name} now has {customer.money - shop_prices[shop_instance.name]} dollars\n")  # pyright: ignore # noqa: E501
+            customer.money = customer.money - shop_prices[shop_instance.name]  # pyright: ignore # noqa: E501
+            print(f"{customer.name} now has {customer.money} dollars\n")
