@@ -16,7 +16,7 @@ class Customer:
     money: int
     car: Car
 
-    def count_total_price(self, shop: Shop):
+    def count_total_price(self, shop: Shop) -> float:
         result = 0
         for product in self.product_cart:
             result += self.product_cart[product] * shop.products[product]
