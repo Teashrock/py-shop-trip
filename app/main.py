@@ -47,7 +47,7 @@ def shop_trip() -> None:
             shop_prices = {}
             for shop in shops:
                 shop_prices[shop.name] = round(customer.count_total_price(shop), 2)  # noqa: E501
-                print(f"{customer.name}'s trip to the {shop.name} costs {shop_prices[shop.name]} dollars")  # noqa: E501
+                print(f"{customer.name}'s trip to the {shop.name} costs {shop_prices[shop.name]}")  # noqa: E501
             chosen_shop = min(shop_prices, key=shop_prices.get)  # pyright: ignore # noqa: E501
             if customer.money < min(shop_prices.values()):
                 print(f"{customer.name} doesn't have enough money to make a purchase in any shop")  # noqa: E501
@@ -58,14 +58,20 @@ def shop_trip() -> None:
                     shop_instance = shop
             print(f"{customer.name} rides to {chosen_shop}\n")
             customer.location = shop_instance.location  # pyright: ignore
-            curr_date = datetime.datetime.strftime(
-                datetime.datetime.now(), "%d/%m/%y %H:%M:%S"
+            curr_date = datetime.datetime.now().strftime(
+                "%d/%m/20%y %H:%M:%S"
             )
             print(f"Date: {curr_date}")
             print(f"Thanks, {customer.name}, for your purchase!")
             print("You have bought:")
+            product_price = 0.0
             for product, quantity in customer.product_cart.items():
-                print(f"{quantity} {product}s for {quantity * shop_instance.products[product]}")  # pyright: ignore # noqa: E501
-            print(f"See you again!\n{customer.name} rides home")
+                price = quantity * shop_instance.products[product]  # pyright: ignore
+                if price == int(price):
+                    price = int(price)
+                print(f"{quantity} {product}s for {price} dollars")
+                product_price += price
+            print(f"Total cost is {product_price} dollars")
+            print(f"See you again!\n\n{customer.name} rides home")
             customer.location = original_home_location
-            print(f"{customer.name} now has {customer.money - shop_prices[shop_instance.name]}\n")  # pyright: ignore # noqa: E501
+            print(f"{customer.name} now has {customer.money - shop_prices[shop_instance.name]} dollars\n")  # pyright: ignore # noqa: E501
