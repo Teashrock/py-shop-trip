@@ -9,4 +9,4 @@ class Car:
 
     @property
     def full_price(self) -> float:
-        return self.fuel_price * self.fuel_consumption
+        return self.fuel_price * (self.fuel_consumption / 100)
