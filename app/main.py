@@ -14,8 +14,8 @@ except ImportError:
 
 
 def shop_trip() -> None:
-    with open(os.path.join("app", "config.json"), "r") as la_json:
-        json_content = json.load(la_json)
+    with open(os.path.join("app", "config.json"), "r") as config_file:
+        json_content = json.load(config_file)
         fuel_price = json_content["FUEL_PRICE"]
         customers: list[Customer] = []
         shops: list[Shop] = []
