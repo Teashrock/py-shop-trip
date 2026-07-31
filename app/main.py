@@ -51,7 +51,7 @@ def shop_trip() -> None:
             chosen_shop = min(shop_prices, key=shop_prices.get)  # pyright: ignore # noqa: E501
             if customer.money < min(shop_prices.values()):
                 print(f"{customer.name} doesn't have enough money to make a purchase in any shop")  # noqa: E501
-                return
+                continue
             shop_instance: Shop
             for shop in shops:
                 if shop.name == chosen_shop:

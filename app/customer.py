@@ -14,7 +14,7 @@ class Customer:
     name: str
     product_cart: dict[str, int]
     location: list[int]
-    money: int
+    money: float
     car: Car
 
     def count_total_price(self, shop: Shop) -> float:
