@@ -42,6 +42,7 @@ def shop_trip() -> None:
                 )
             )
         for customer in customers:
+            original_home_location = customer.location
             print(f"{customer.name} has {customer.money} dollars")
             shop_prices = {}
             for shop in shops:
@@ -56,6 +57,7 @@ def shop_trip() -> None:
                 if shop.name == chosen_shop:
                     shop_instance = shop
             print(f"{customer.name} rides to {chosen_shop}\n")
+            customer.location = shop_instance.location  # pyright: ignore
             curr_date = datetime.datetime.strftime(
                 datetime.datetime.now(), "%d/%m/%y %H:%M:%S"
             )
@@ -65,4 +67,5 @@ def shop_trip() -> None:
             for product, quantity in customer.product_cart.items():
                 print(f"{quantity} {product}s for {quantity * shop_instance.products[product]}")  # pyright: ignore # noqa: E501
             print(f"See you again!\n{customer.name} rides home")
+            customer.location = original_home_location
             print(f"{customer.name} now has {customer.money - shop_prices[shop_instance.name]}\n")  # pyright: ignore # noqa: E501
