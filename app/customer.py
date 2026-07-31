@@ -23,6 +23,9 @@ class Customer:
             result += self.product_cart[product] * shop.products[product]
         # Calculating distance
         # √((x₂ - x₁)² + (y₂ - y₁)²)
-        distance = sqrt((shop.location[0] - self.location[0]) ** 2 + (shop.location[1] - self.location[1]) ** 2)
+        distance = sqrt(
+            (shop.location[0] - self.location[0]) ** 2
+            + (shop.location[1] - self.location[1]) ** 2
+        )
         result += self.car.full_price * distance * 2
         return result

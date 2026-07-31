@@ -66,7 +66,7 @@ def shop_trip() -> None:
             print("You have bought:")
             product_price = 0.0
             for product, quantity in customer.product_cart.items():
-                price = quantity * shop_instance.products[product]  # pyright: ignore
+                price = quantity * shop_instance.products[product]  # pyright: ignore # noqa: E501
                 if price == int(price):
                     price = int(price)
                 print(f"{quantity} {product}s for {price} dollars")
