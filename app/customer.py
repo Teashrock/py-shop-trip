@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from math import sqrt
+from math import dist
 
 try:
     from app.car import Car
@@ -21,11 +21,5 @@ class Customer:
         result = 0
         for product in self.product_cart:
             result += self.product_cart[product] * shop.products[product]
-        # Calculating distance
-        # √((x₂ - x₁)² + (y₂ - y₁)²)
-        distance = sqrt(
-            (shop.location[0] - self.location[0]) ** 2
-            + (shop.location[1] - self.location[1]) ** 2
-        )
-        result += self.car.full_price * distance * 2
+        result += self.car.full_price * dist(shop.location, self.location) * 2
         return result
