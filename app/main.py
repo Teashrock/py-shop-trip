@@ -35,11 +35,19 @@ def shop_trip() -> None:
             print(f"{customer.name} has {customer.money} dollars")
             shop_prices = {}
             for shop in shops:
-                shop_prices[shop.name] = round(customer.count_total_price(shop), 2)  # noqa: E501
-                print(f"{customer.name}'s trip to the {shop.name} costs {shop_prices[shop.name]}")  # noqa: E501
-            chosen_shop = min(shop_prices, key=shop_prices.get)  # pyright: ignore # noqa: E501
+                shop_prices[shop.name] = round(
+                    customer.count_total_price(shop), 2
+                )
+                print(
+                    f"{customer.name}'s trip to "
+                    f"the {shop.name} costs {shop_prices[shop.name]}"
+                )
+            chosen_shop = min(shop_prices, key=shop_prices.get)
             if customer.money < min(shop_prices.values()):
-                print(f"{customer.name} doesn't have enough money to make a purchase in any shop")  # noqa: E501
+                print(
+                    f"{customer.name} doesn't have enough "
+                    f"money to make a purchase in any shop"
+                )
                 continue
             shop_instance: Shop
             for shop in shops:
@@ -50,9 +58,11 @@ def shop_trip() -> None:
             curr_date = datetime.datetime.now().strftime(
                 "%d/%m/%Y %H:%M:%S"
             )
-            print(f"Date: {curr_date}")
-            print(f"Thanks, {customer.name}, for your purchase!")
-            print("You have bought:")
+            print(
+                f"Date: {curr_date}"
+                f"Thanks, {customer.name}, for your purchase!"
+                "You have bought:"
+            )
             product_price = 0.0
             for product, quantity in customer.product_cart.items():
                 price = quantity * shop_instance.products[product]  # pyright: ignore # noqa: E501
