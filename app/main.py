@@ -29,13 +29,7 @@ def shop_trip() -> None:
                 )
             )
         for shop_data in json_content["shops"]:
-            shops.append(
-                Shop(
-                    shop_data["name"],
-                    shop_data["location"],
-                    shop_data["products"]
-                )
-            )
+            shops.append(Shop(*shop_data))
         for customer in customers:
             original_home_location = customer.location
             print(f"{customer.name} has {customer.money} dollars")
