@@ -1,12 +1,8 @@
 from dataclasses import dataclass
 from math import dist
 
-try:
-    from app.car import Car
-    from app.shop import Shop
-except ImportError:
-    from car import Car
-    from shop import Shop
+from app.car import Car
+from app.shop import Shop
 
 
 @dataclass
